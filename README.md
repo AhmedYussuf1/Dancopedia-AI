@@ -1,6 +1,6 @@
-#Dancopedia AI
+# Dancopedia AI
 
-##Core Technologies
+## Core Technologies
 
 ### Frontend:
 
@@ -38,7 +38,7 @@
 
     Users can search for dances by name, region, or style.
 
-###3. Generative AI Q&A:
+### 3. Generative AI Q&A:
 
   Visitors can ask questions such as:
 
@@ -48,7 +48,7 @@
 
   Responses will be generated using the selected LLM API.
 
-###4. Category Pages:
+### 4. Category Pages:
 
   Dedicated pages for each dance category, featuring:
 
@@ -56,15 +56,15 @@
 
   Multimedia content (images, videos)
 
-###5. Interactive Map:
+### 5. Interactive Map:
 
   A clickable world map allowing users to explore dance forms by selecting a country or region.
 
-###6. Responsive Design:
+### 6. Responsive Design:
 
   The website must be mobile-friendly and adapt to different screen sizes.
 
-###7. User Feedback:
+### 7. User Feedback:
 
   A feedback form for visitors to:
 
