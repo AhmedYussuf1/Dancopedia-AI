@@ -34,7 +34,7 @@
 
     Contemporary Dances
 
-  ###2. Search Functionality:
+  ### 2. Search Functionality:
 
     Users can search for dances by name, region, or style.
 
