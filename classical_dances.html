@@ -1,0 +1,153 @@
+<?php
+// Start session to track user login status
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classical Dances - Dance USA</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Navbar styling */
+        nav.navbar {
+            background-color: #343a40;
+            /* Debugging: background color */
+            background-color: #007bff;
+        }
+
+        nav.navbar .navbar-brand {
+            color: #fff;
+        }
+
+        nav.navbar .nav-link {
+            color: #fff;
+            /* Debugging: color change for better visibility */
+            background-color: #28a745;
+        }
+
+        nav.navbar .nav-link:hover {
+            color: #f8f9fa;
+            background-color: #218838;
+        }
+
+        .navbar .navbar-nav {
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .navbar .navbar-nav .search-bar {
+            width: 50%; /* Increase the width of the search bar */
+        }
+
+        /* Adjust the search bar */
+        #search-bar {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 20px; /* Rounded corners for search bar */
+        }
+
+        /* Optional: Make the navbar items look better in mobile view */
+        .navbar-nav {
+            align-items: center;
+        }
+
+        /* Body content styling */
+        .main-content {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Dances of the World</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Home Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <!-- Classical Dances Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="classical_dances.php">Classical Dances</a>
+                    </li>
+                    <!-- Folk Dances Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="folk_dances.php">Folk Dances</a>
+                    </li>
+                    <!-- Contemporary Dances Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="contemporary_dances.php">Contemporary Dances</a>
+                    </li>
+                    <!-- Blog Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.php">Blog</a>
+                    </li>
+                    <!-- Search Bar in Navbar -->
+                    <li class="nav-item search-bar">
+                        <input type="text" id="search-bar" class="form-control" placeholder="Search for dances..." onkeyup="searchDances()">
+                    </li>
+                    <!-- Conditional Login/Logout Link -->
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <!-- Admin link if user is logged in -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_dashboard.php">Admin</a>
+                        </li>
+                        <!-- Logout link if user is logged in -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                    <?php else: ?>
+                        <!-- Login link if user is not logged in -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blank Screen for Classical Dances Page -->
+    <div class="main-content">
+        <h2>Classical Dances</h2>
+        <p>This page will contain information about classical dances in the future.</p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Search function
+        function searchDances() {
+            let query = document.getElementById('search-bar').value;
+            if (query) {
+                alert('Searching for: ' + query);
+                // Implement real search logic or redirect
+            } else {
+                alert('Please enter a search query.');
+            }
+        }
+    </script>
+
+</body>
+</html>
