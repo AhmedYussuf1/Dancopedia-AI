@@ -1,8 +1,27 @@
-<?php
-
+<?php 
 // Start session to track user login status
 session_start();
+
+// Database connection
+$servername = "localhost";
+$username = "root";  // Your MySQL username
+$password = "ics311";      // Your MySQL password
+$dbname = "dance_ai_db";  // Your MySQL database name
+$port = 3307; // MySQL default port, change if needed
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to get dance data
+$sql = "SELECT * FROM dances";  // Ensure this matches your table and column names
+$result = $conn->query($sql);
 ?>
+
 <!-- Add Favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -125,39 +144,6 @@ session_start();
             margin-right: 8px;
         }
 
-        /* Animation for nav links */
-        .nav-link {
-            position: relative;
-            display: inline-block;
-            color: white;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Apply a wiggle effect when hovering over navbar links */
-        .nav-link:hover {
-            color: #white;
-            animation: wiggle 0.6s ease-in-out forwards;
-        }
-
-        /* Keyframes for the wiggle effect */
-        @keyframes wiggle {
-            0% {
-                transform: rotate(0deg);
-            }
-            25% {
-                transform: rotate(5deg);
-            }
-            50% {
-                transform: rotate(0deg);
-            }
-            75% {
-                transform: rotate(-5deg);
-            }
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-
         /* Optional: Add a smooth transition for the search bar */
         .search-bar input {
             transition: width 0.4s ease;
@@ -251,6 +237,49 @@ session_start();
         </section>
     </div>
 
+    <!-- Dance Table Section -->
+    <div class="container my-5">
+        <h2 class="text-center">Dance Listings</h2>
+
+        <!-- Filters Section -->
+        <div class="d-flex justify-content-between mb-3">
+            <input type="text" id="search-name" class="form-control w-25" placeholder="Search by Name" onkeyup="filterDances()">
+            <input type="text" id="search-genre" class="form-control w-25" placeholder="Search by Genre" onkeyup="filterDances()">
+            <input type="text" id="search-region" class="form-control w-25" placeholder="Search by Region" onkeyup="filterDances()">
+        </div>
+
+        <table class="dance-table table table-bordered">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Name <i class="fa fa-sort"></i></th>
+                    <th onclick="sortTable(1)">Genre <i class="fa fa-sort"></i></th>
+                    <th onclick="sortTable(2)">Region <i class="fa fa-sort"></i></th>
+                    <th>Description</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody id="dance-list">
+                <?php
+                // Check if any data is returned
+                if ($result->num_rows > 0) {
+                    // Output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>" . $row['genre'] . "</td>";
+                        echo "<td>" . $row['region'] . "</td>";
+                        echo "<td>" . $row['description'] . "</td>";
+                        echo "<td><a href='#'>View Details</a></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5' class='text-center'>No records found</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
     <!-- CHAT BOX -->
     <div class="chat-box-container">
         <button class="open-button" onclick="openChatBox()">Chat <i class="fa-regular fa-comment"></i></button>
@@ -315,7 +344,17 @@ session_start();
         function searchDances() {
             let query = document.getElementById('search-bar').value;
             if (query) {
-                alert('Searching for: ' + query); // Replace this alert with actual search logic
+                $.ajax({
+                    type: 'GET',
+                    url: 'search.php',  // Create this PHP file to fetch filtered data
+                    data: { search: query },
+                    success: function(response) {
+                        $('#dance-list').html(response);  // Update the dance table
+                    },
+                    error: function() {
+                        alert('Error occurred while searching');
+                    }
+                });
             } else {
                 alert('Please enter a search query.');
             }
@@ -324,3 +363,4 @@ session_start();
 
 </body>
 </html>
+
