@@ -1,4 +1,4 @@
-<?php 
+<?php  
 // Start session to track user login status
 session_start();
 
@@ -157,53 +157,26 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-    <!-- Navigation Bar (Same as on other pages) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="images/logo.png" alt="Dance USA Logo" class="img-fluid" style="height: 50px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="classical_dances.php">Classical Dances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="folk_dances.php">Folk Dances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contemporary_dances.php">Contemporary Dances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.php">Blog</a>
-                    </li>
-                    <li class="nav-item search-bar">
-                        <input type="text" id="search-bar" class="form-control" placeholder="Search for dances..." onkeyup="searchDances()">
-                    </li>
-                    <?php if (isset($_SESSION['username'])): ?>
-                        <!-- Check if the logged-in user is an admin -->
-                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="admin_dashboard.php">Admin</a>
-                            </li>
-                        <?php endif; ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
+    <!-- Include Navbar -->
+    <?php include('navbar.php'); ?>
+
+    <!-- Check if the logged-in user is an admin -->
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <li class="nav-item">
+            <a class="nav-link" href="admin_dashboard.php">Admin</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+    <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link" href="login.php">Login</a>
+        </li>
+    <?php endif; ?>
+
+    </ul>
+    </div>
+    </div>
     </nav>
 
     <!-- Home Page Content -->
@@ -341,26 +314,25 @@ $result = $conn->query($sql);
         });
 
         // Search function
-        function searchDances() {
-            let query = document.getElementById('search-bar').value;
-            if (query) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'search.php',  // Create this PHP file to fetch filtered data
-                    data: { search: query },
-                    success: function(response) {
-                        $('#dance-list').html(response);  // Update the dance table
-                    },
-                    error: function() {
-                        alert('Error occurred while searching');
-                    }
-                });
-            } else {
-                alert('Please enter a search query.');
-            }
+        function filterDances() {
+            let name = document.getElementById('search-name').value.toLowerCase();
+            let genre = document.getElementById('search-genre').value.toLowerCase();
+            let region = document.getElementById('search-region').value.toLowerCase();
+            let tableRows = document.querySelectorAll('#dance-list tr');
+
+            tableRows.forEach(row => {
+                let nameCell = row.cells[0].textContent.toLowerCase();
+                let genreCell = row.cells[1].textContent.toLowerCase();
+                let regionCell = row.cells[2].textContent.toLowerCase();
+
+                if (nameCell.includes(name) && genreCell.includes(genre) && regionCell.includes(region)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         }
     </script>
 
 </body>
 </html>
-
