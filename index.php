@@ -157,54 +157,8 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-    <!-- Navigation Bar (Same as on other pages) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="images/logo.png" alt="Dance USA Logo" class="img-fluid" style="height: 50px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="classical_dances.php">Classical Dances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="folk_dances.php">Folk Dances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contemporary_dances.php">Contemporary Dances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.php">Blog</a>
-                    </li>
-                    <li class="nav-item search-bar">
-                        <input type="text" id="search-bar" class="form-control" placeholder="Search for dances..." onkeyup="searchDances()">
-                    </li>
-                    <?php if (isset($_SESSION['username'])): ?>
-                        <!-- Check if the logged-in user is an admin -->
-                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="admin_dashboard.php">Admin</a>
-                            </li>
-                        <?php endif; ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar -->
+    <?php include('navbar.php'); ?>
 
     <!-- Home Page Content -->
     <div class="main-content">

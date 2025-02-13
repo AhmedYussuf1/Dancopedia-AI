@@ -45,16 +45,18 @@
                 </li>
 
                 <?php if (isset($_SESSION['username'])): ?>
-                    <!-- Admin Link, Only for Admin -->
-                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'admin_dashboard.php' ? 'active' : ''; ?>" href="admin_dashboard.php">Admin</a>
-                        </li>
-                    <?php endif; ?>
-
-                    <!-- Logout Link -->
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
+                        <div class="nav-item dropdown show"><a class="dropdown-toggle" aria-expanded="true" data-bs-toggle="dropdown" href="#"><?php echo $_SESSION['username'] ?></a>
+                            <div class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
+                                <a class="dropdown-item" href="user_settings.php">User Settings</a>
+                                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item <?php echo basename($_SERVER['PHP_SELF']) == 'admin_dashboard.php' ? 'active' : ''; ?>" href="admin_dashboard.php">Admin</a>
+                                    </li>
+                                <?php endif; ?>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
+                            </div>
+                        </div>
                     </li>
                 <?php else: ?>
                     <!-- Login Link -->
@@ -103,6 +105,11 @@ function searchDances() {
         display: inline-block;
         color: white;
         transition: all 0.3s ease-in-out;
+    }
+
+    .dropdown{
+        margin-left: 25px;
+        margin-right: 25px;
     }
 
     .nav-link:hover {
