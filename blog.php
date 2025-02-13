@@ -4,7 +4,7 @@ session_start(); // Start the session to track user login status
 // Database connection variables
 $servername = "localhost";  // MySQL server (usually localhost)
 $username = "root";         // MySQL username (default root for XAMPP)
-$password = "ics311";       // MySQL password (you've set this as "ics311")
+$password = "";       // MySQL password (you've set this as "ics311")
 $dbname = "dance_ai_db";    // Your actual database name
 $port = 3307;               // Assuming this is your MySQL port for XAMPP, usually 3306 but you mentioned 3307
 
