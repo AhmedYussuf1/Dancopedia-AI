@@ -1,0 +1,59 @@
+/* Bootstrap Overrides and Custom Styles */
+
+/* Custom Navbar Styling */
+nav.navbar {
+    background-color: #343a40; /* Dark background color for navbar */
+}
+
+/* Adjust the search bar */
+nav.navbar .search-bar {
+    width: 45%; /* Increase the width of the search bar */
+    margin-left: 20px; /* Add space between the search bar and other navbar items */
+}
+
+/* Navbar Links Styling */
+nav.navbar .navbar-nav {
+    display: flex;           /* Flexbox layout for navbar items */
+    align-items: center;     /* Align items vertically */
+    flex-wrap: nowrap;       /* Prevent wrapping of navbar items */
+}
+
+/* Adjust spacing between links */
+nav.navbar .nav-item {
+    margin-left: 15px; /* Add space between navbar items */
+}
+
+/* Search bar input styling */
+#search-bar {
+    padding: 10px;       /* Increase padding to make the search bar bigger */
+    font-size: 16px;     /* Increase font size for better readability */
+    border-radius: 20px; /* Add rounded corners to the search bar */
+}
+
+/* Navbar link hover effect */
+nav.navbar .nav-link:hover {
+    color: #f8f9fa; /* Change text color when hovering over links */
+}
+
+/* Add active link color */
+nav.navbar .nav-link.active {
+    color: #ff6600; /* Set a different color for the active link */
+}
+
+/* Additional adjustments for navbar items */
+nav.navbar .navbar-brand {
+    color: #fff; /* Set the color of the brand */
+}
+
+/* Ensure no wrapping of navbar items */
+nav.navbar .navbar-nav .nav-item .nav-link {
+    white-space: nowrap; /* Prevent text from breaking onto new lines */
+}
+
+/* Adjustments for smaller screens (mobile view) */
+@media (max-width: 767px) {
+    nav.navbar .search-bar {
+        width: 70%;  /* Increase search bar width on smaller screens */
+        margin-left: 0;  /* Remove the margin on smaller screens */
+    }
+}
