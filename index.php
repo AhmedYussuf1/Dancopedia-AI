@@ -5,7 +5,7 @@ session_start();
 // Database connection
 $servername = "localhost";
 $username = "root";  // Your MySQL username
-$password = "ics311";      // Your MySQL password
+$password = "";      // Your MySQL password
 $dbname = "dance_ai_db";  // Your MySQL database name
 $port = 3307; // MySQL default port, change if needed
 
