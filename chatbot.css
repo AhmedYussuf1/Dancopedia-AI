@@ -1,0 +1,135 @@
+/* General body and page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Container for the chat button (floating button on bottom-right corner) */
+.chat-box-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+/* Button to open the chat window */
+.open-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.open-button:hover {
+    background-color: #0056b3;
+}
+
+/* Chat popup form */
+.chat-popup {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Title bar with close button */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Chat messages area */
+.chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+/* Style for user messages */
+.user-message {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    margin-left: auto;
+}
+
+/* Style for chatbot messages */
+.message {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+/* Message label */
+.message-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Input area for user to type messages */
+textarea.chatbox-text-area {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    height: 60px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+/* Send button */
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Close button */
+.cancel {
+    background-color: #f44336;
+}
+
+.cancel:hover {
+    background-color: #d32f2f;
+}
