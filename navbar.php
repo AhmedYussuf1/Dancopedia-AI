@@ -1,6 +1,6 @@
 <!-- Favicon -->
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
+<link rel="stylesheet" href="css/navbar.css">
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -97,39 +97,3 @@ function searchDances() {
     }
 }
 </script>
-
-<!-- Optional Custom CSS for Navbar Hover Effects -->
-<style>
-    .nav-link {
-        position: relative;
-        display: inline-block;
-        color: white;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .dropdown{
-        margin-left: 25px;
-        margin-right: 25px;
-    }
-
-    .nav-link:hover {
-        color: #fff;
-        animation: wiggle 0.6s ease-in-out forwards;
-    }
-
-    @keyframes wiggle {
-        0% { transform: rotate(0deg); }
-        25% { transform: rotate(5deg); }
-        50% { transform: rotate(0deg); }
-        75% { transform: rotate(-5deg); }
-        100% { transform: rotate(0deg); }
-    }
-
-    .search-bar input {
-        transition: width 0.4s ease;
-    }
-
-    .search-bar input:focus {
-        width: 250px;
-    }
-</style>
